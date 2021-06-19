@@ -1,37 +1,47 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 enum Notes{
   DO = 1,
-  RE = 2,
-  MI = 3,
-  FA = 4,
-  SOL = 5,
-  LYA = 6,
-  SI = 7
+  RE,
+  MI,
+  FA,
+  SOL,
+  LYA,
+  SI
 };
 
 int main(){
   std::cout << "Mechanical Piano" << std::endl;
   std::vector<int> vMusic;
-  std::vector<int> vMusic2;
-  // int count = 0;
-  int melody = 0;
+  std::string melody;
+
   std::cout << "Enter melody" << std::endl;
   for(int i = 0; i < 3; i++){
     std::cin >> melody;
-    do{
-      vMusic.push_back(melody % 10);
-      melody /=10;
-      // count++;
-    } while (melody);
-    
-    reverse(vMusic.begin(), vMusic.end());
+    for(int j = 0; j < melody.size(); j++){
+      vMusic.push_back(std::stoi(melody.substr(j, 1)));
+
+    }
   }
- 
+
   for(int i = 0; i < vMusic.size(); i++){
-    std::cout << vMusic[i] << " ";
+    if(vMusic[i] == Notes::DO){
+      std::cout << "DO" << " ";
+    }else if(vMusic[i] == Notes::RE){
+      std::cout << "RE" << " ";
+    }else if(vMusic[i] == Notes::MI){
+      std::cout << "MI" << " ";
+    }else if(vMusic[i] == Notes::FA){
+      std::cout << "FA" << " ";
+    }else if(vMusic[i] == Notes::SOL){
+      std::cout << "SOL" << " ";
+    }else if(vMusic[i] == Notes::LYA){
+      std::cout << "LYA" << " ";
+    }else if(vMusic[i] == Notes::SI){
+      std::cout << "SI" << " ";
+    }
+    
   }
   return 0;
 }
@@ -56,3 +66,15 @@ int main(){
 // на этот раз она печатается “красиво”, т.е. все 
 // ноты указываются словами, а не цифрами. 
 // При этом слова разделяются пробелами.
+
+// Советы и рекомендации
+
+// Для вычленения отдельных символов-цифр из строки 
+// с нотами используйте оператор индексации строки. 
+// Для дальнейшей конвертации символа в строку используйте 
+// соответствующий конструктор.
+
+// Для простоты, чтобы из индекса ноты получить саму 
+// ноту-флаг из enum, используйте оператор сдвига. 
+// Общая формула такова: 1 << индекс ноты (начинается с нуля). 
+// К примеру 1 << 0 - битовый флаг ноты до, 1 << 6 битовая маска ноты си.
