@@ -16,43 +16,25 @@ int main(){
   std::cout << "Mechanical Piano" << std::endl;
   std::vector<int> vMusic;
   std::vector<int> vMusic2;
+  // int count = 0;
   int melody = 0;
   std::cout << "Enter melody" << std::endl;
   for(int i = 0; i < 3; i++){
     std::cin >> melody;
     do{
-      // int d = melody % 10;
-     vMusic.push_back(melody % 10);
-      // std::cout << d << " ";
+      vMusic.push_back(melody % 10);
       melody /=10;
+      // count++;
     } while (melody);
+    
     reverse(vMusic.begin(), vMusic.end());
   }
-//  for(int i = 0; i < vMusic.size();){
-//     do{
-//       vMusic2.push_back(vMusic[i] % 10);
-//       std::cout << vMusic2[i] << " ";
-//       vMusic[i] /=10;
-//       i++;
-//     } while (vMusic.size());
-//     break;
-//   }
-
-  
+ 
   for(int i = 0; i < vMusic.size(); i++){
     std::cout << vMusic[i] << " ";
   }
   return 0;
 }
-
-  // do{
-  //   int d = melody % 10;
-  //   std::cout << d << " ";
-  //   melody /=10;
-  // } while (melody);
-
-
-
 // Механическое пианино
 
 // Что нужно сделать
