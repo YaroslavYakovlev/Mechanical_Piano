@@ -14,6 +14,7 @@ enum Notes{
 int main(){
   std::cout << "Mechanical Piano" << std::endl;
   std::vector<int> vMusic;
+
   std::string melody;
 
   std::cout << "Enter melody" << std::endl;
@@ -21,9 +22,9 @@ int main(){
     std::cin >> melody;
     for(int j = 0; j < melody.size(); j++){
       vMusic.push_back(std::stoi(melody.substr(j, 1)));
-
     }
   }
+
 
   for(int i = 0; i < vMusic.size(); i++){
     if(vMusic[i] == Notes::DO){
@@ -40,8 +41,7 @@ int main(){
       std::cout << "LYA" << " ";
     }else if(vMusic[i] == Notes::SI){
       std::cout << "SI" << " ";
-    }
-    
+    }    
   }
   return 0;
 }
