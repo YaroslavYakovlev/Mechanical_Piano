@@ -1,50 +1,68 @@
 #include <iostream>
 #include <vector>
+#include <sstream>
 
-enum Notes{
-  DO = 1,
-  RE,
-  MI,
-  FA,
-  SOL,
-  LYA,
-  SI
+enum Note
+{
+    DO = 1,
+    RE = 2,
+    MI = 4,
+    FA = 8,
+    SOL = 16,
+    LYA = 32,
+    SI = 64
 };
 
 int main(){
   std::cout << "Mechanical Piano" << std::endl;
-  std::vector<int> vMusic;
-
-  std::string melody;
-
-  std::cout << "Enter melody" << std::endl;
-  for(int i = 0; i < 3; i++){
+  std::vector<int> vMusic(12);
+  for (int i = 0; i < vMusic.size(); ++i){
+    std::string melody;
+    std::cout << "Enter melody" << std::endl;
     std::cin >> melody;
-    for(int j = 0; j < melody.size(); j++){
-      vMusic.push_back(std::stoi(melody.substr(j, 1)));
+    for (auto letter: melody){
+      char index = (letter - '1');
+      vMusic[i] |= 1 << index;
     }
   }
+    std::cout << "Melody:" << std::endl;
+    for (auto notes: vMusic)
+    {
+        std::stringstream buffer;
+        if (notes & DO)
+        {
+            buffer << "DO ";
+        }
+        if (notes & RE)
+        {
+            buffer << "RE ";
+        }
+        if (notes & MI)
+        {
+            buffer << "MI ";
+        }
+        if (notes & FA)
+        {
+            buffer << "FA ";
+        }
+        if (notes & SOL)
+        {
+            buffer << "SOL ";
+        }
+        if (notes & LYA)
+        {
+            buffer << "LYA ";
+        }
+        if (notes & SI)
+        {
+            buffer << "SI ";
+        }
+        std::cout << buffer.str() << std::endl;
+    }
 
-
-  for(int i = 0; i < vMusic.size(); i++){
-    if(vMusic[i] == Notes::DO){
-      std::cout << "DO" << " ";
-    }else if(vMusic[i] == Notes::RE){
-      std::cout << "RE" << " ";
-    }else if(vMusic[i] == Notes::MI){
-      std::cout << "MI" << " ";
-    }else if(vMusic[i] == Notes::FA){
-      std::cout << "FA" << " ";
-    }else if(vMusic[i] == Notes::SOL){
-      std::cout << "SOL" << " ";
-    }else if(vMusic[i] == Notes::LYA){
-      std::cout << "LYA" << " ";
-    }else if(vMusic[i] == Notes::SI){
-      std::cout << "SI" << " ";
-    }    
-  }
-  return 0;
+    return 0;
 }
+
 // Механическое пианино
 
 // Что нужно сделать
